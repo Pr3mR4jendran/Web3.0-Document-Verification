@@ -1,7 +1,7 @@
 const ContractHash = artifacts.require("ContractHash");
 const { extract } = require("./extract");
 const { hashfunc } = require("./hashfunc");
-const filename = "../docs/6103 Tampered.png";
+const filename = "../docs/6103.png";
 
 module.exports = async function CheckHash(callback){
     const Hash = await ContractHash.deployed();
