@@ -7,7 +7,7 @@ module.exports = async function CheckHash(callback){
     const Hash = await ContractHash.deployed();
     let file = await extract(filename);
     let hashed = hashfunc(file);
-    console.log(hashed);
+    //console.log(hashed);
     var total = await Hash.count();
     console.log("Total number of files stored in the blockchain: " + total);
     var res = await Hash.checkFile(hashed);
@@ -17,7 +17,9 @@ module.exports = async function CheckHash(callback){
     else{
         console.log("The file is authentic.");
         var index = Number(await Hash.getFileNo(hashed));
-        console.log("File number : "+index);
+        console.log("File No. : "+index);
+        var name =  await Hash.getFileName(index);
+        console.log("File Name : "+name);
     }
     callback();
 }
