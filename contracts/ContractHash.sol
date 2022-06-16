@@ -46,7 +46,7 @@ contract ContractHash{
 
     function uploadFile(string memory fileHash, string memory fileName) public {
         //uploading the hash only if the file hasn't already been uploaded
-        if(checkFile(fileHash)==false){
+        if(checkFile(fileHash)==false && OwnerOf[getFileNo(fileHash)] !=  msg.sender){
             HashList[count+1] = File(count+1,fileHash,fileName);
             OwnerOf[count+1] = msg.sender;
             FileNoList[fileHash] = count+1;
