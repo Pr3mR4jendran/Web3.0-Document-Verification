@@ -1,13 +1,14 @@
 const ContractHash = artifacts.require("ContractHash");
 const { extract } = require("./extract");
-const { hashfunc } = require("./hashfunc");
-const filename = "../docs/6103.png";
+const filename = "../docs/evenBiggerFile.txt";
 
 module.exports = async function StoreHash(callback){
     const Hash = await ContractHash.deployed();
-    let file = await extract(filename);
-    let hashed = hashfunc(file);
+    let hashed = await extract(filename);
     console.log(hashed);
+    var d1 = new Date();
     await Hash.uploadFile(hashed,filename.slice(8));
+    var d2 = new Date();
+    console.log("Time taken : "+Math.abs((d2.getSeconds()-d1.getSeconds()))+" s");
     callback();
 }

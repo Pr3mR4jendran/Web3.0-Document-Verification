@@ -1,16 +1,9 @@
-const fs = require('fs');
+const hasha = require('hasha');
 var buffer = null;
 
-const extract = path => {
-    return new Promise(function (resolve, reject) {
-        fs.stat(path, function (err, stat) {
-            buffer = new Buffer.alloc(Number(stat.size));
-        });
-        fs.open(path, 'r', function (err, f) {
-            fs.read(f, buffer, 0, buffer.length, 0, function (err, data) {
-                resolve(buffer.toString());
-            });
-        });
-    });
+const extract = async (path) => {
+	const hash = await hasha.fromFile(path, {algorithm: 'sha256'});
+	return hash;
 };
+
 exports.extract = extract;
