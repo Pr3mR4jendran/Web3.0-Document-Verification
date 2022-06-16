@@ -17,6 +17,8 @@ module.exports = async function CheckHash(callback){
         console.log("File No. : "+index);
         var name =  await Hash.getFileName(index);
         console.log("File Name : "+name);
+        var owner =  await Hash.getOwner(index);
+        console.log("File Owner : "+owner);
     }
     callback();
 }
