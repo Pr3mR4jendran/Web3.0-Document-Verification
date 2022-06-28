@@ -1,10 +1,11 @@
 const ContractHash = artifacts.require("ContractHash");
-const { extract } = require("./extract");
+const { extractfile } = require("./extractfile");
 const filename = "../docs/bigfile.txt";
 
 module.exports = async function CheckHash(callback){
     const Hash = await ContractHash.deployed();
-    let hashed = await extract(filename);
+    let hashed = await extractfile(filename);
+    console.log(hashed);
     var total = await Hash.count();
     console.log("Total number of files stored in the blockchain: " + total);
     var res = await Hash.checkFile(hashed);

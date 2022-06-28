@@ -1,10 +1,10 @@
 const ContractHash = artifacts.require("ContractHash");
-const { extract } = require("./extract");
+const { extractfile } = require("./extractfile");
 const filename = "../docs/bigfile.txt";
 
 module.exports = async function StoreHash(callback){
     const Hash = await ContractHash.deployed();
-    let hashed = await extract(filename);
+    let hashed = await extractfile(filename);
     console.log(hashed);
     var d1 = new Date();
     await Hash.uploadFile(hashed,filename.slice(8));
