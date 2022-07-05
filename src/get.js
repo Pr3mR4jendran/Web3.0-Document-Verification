@@ -1,24 +1,24 @@
 var AWS = require("aws-sdk");
 const { extractS3 } = require("./extractS3");
 const { extractfile } = require("./extractfile");
-const filename = "./docs/bigfile.txt";
+const filename = "../docs/bigfile.txt";
 const path = require("path");
 
 const s3 = new AWS.S3({
-    accessKeyId: process.env.IAM_USER_KEY,  /* required */
-    secretAccessKey: process.env.IAM_USER_SECRET, /* required */
-    Bucket: "smartblocks-docs"     /* required */     
+    accessKeyId: process.env.IAM_USER_KEY,
+    secretAccessKey: process.env.IAM_USER_SECRET,
+    Bucket: "smartblocks-docs"
 });
 
 const params = {
-    Bucket: "smartblocks-docs",  /* required */
-    Key: "bigfile.txt"         /* required */
+    Bucket: "smartblocks-docs",
+    Key: "bigfile.txt"
 };
 
 const s3download = function (params) {
     return new Promise((resolve, reject) => {
         s3.createBucket({
-            Bucket: "smartblocks-docs"        /* Put your bucket name */
+            Bucket: "smartblocks-docs"
         }, function () {
             s3.getObject(params, function (err, data) {
                 if (err) {
