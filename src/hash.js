@@ -6,9 +6,8 @@ module.exports = async function StoreHash(callback){
     const Hash = await ContractHash.deployed();
     let hashed = await extractfile(filename);
     console.log(hashed);
-    var d1 = new Date();
+    console.time('Time Taken');
     await Hash.uploadFile(hashed,filename.slice(8));
-    var d2 = new Date();
-    console.log("Time taken : "+Math.abs((d2.getMilliseconds()-d1.getMilliseconds()))+" ms");
+    console.timeEnd('Time Taken');
     callback();
 }

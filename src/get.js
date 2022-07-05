@@ -1,7 +1,8 @@
 var AWS = require("aws-sdk");
 const { extractS3 } = require("./extractS3");
 const { extractfile } = require("./extractfile");
-const filename = "../docs/bigfile.txt";
+const file = "hugefile.txt";
+const filename = "../docs/"+file;
 const path = require("path");
 
 const s3 = new AWS.S3({
@@ -12,7 +13,7 @@ const s3 = new AWS.S3({
 
 const params = {
     Bucket: "smartblocks-docs",
-    Key: "bigfile.txt"
+    Key: file
 };
 
 const s3download = function (params) {
@@ -33,12 +34,15 @@ const s3download = function (params) {
 }
 
 const display = async function(){
+    console.log("Checking file : "+file);
     var filepath = path.resolve(filename);
     var hashedfile = await extractfile(filepath);
     console.log(hashedfile);
+    console.time('Time Taken');
     var result = await s3download(params);
     console.log(result);
     var hashed = await extractS3(result.Body);
     console.log(hashed);
+    console.timeEnd('Time Taken');
 }
 display();
