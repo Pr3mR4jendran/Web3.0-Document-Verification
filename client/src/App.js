@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import getWeb3 from "./getWeb3";
 import "./App.css";
 import ContractHash from "./ContractHash.json";
-const { extractfile } = require("./extractfile");
+const { extractS3 } = require("./extractS3");
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null, account: null, balance: null};
@@ -40,42 +40,77 @@ class App extends Component {
   };
 
   Bal = async () => {
+    for(let i=1;i<=14;i++){
+      document.getElementById("text"+i).innerHTML = "";
+    }
     const { balance } = this.state;
     document.getElementById("text1").innerHTML = balance + " ETH"
   }
 
+  getFileText = function () {
+    return new Promise((resolve, reject) => {
+      const file = document.getElementById("inputElement").files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.readAsText(file, "UTF-8");
+        reader.onload = (evt) => {
+          resolve(evt.target.result);
+        };
+        reader.onerror = (evt) => {
+          console.log("error reading file");
+        };
+      }
+    })
+  }
+
+  Hash = async () => {
+    const filename = document.getElementById("inputElement").files[0].name;
+    for(let i=1;i<=14;i++){
+      document.getElementById("text"+i).innerHTML = "";
+    }
+    const { account, contract } = this.state;
+    var textForHash = await this.getFileText();
+    var hashed = await extractS3(textForHash)
+    console.log(hashed);
+    await contract.methods.uploadFile(hashed,filename).send({from: account});
+  }
+
   Query = async () => {
+    for(let i=1;i<=14;i++){
+      document.getElementById("text"+i).innerHTML = "";
+    }
     const { contract } = this.state;
-    const filename = "../../docs/bigfile.txt"
-    let hashed = await extractfile(filename)
-    var total = await contract.count();
+    var textForHash = await this.getFileText();
+    var hashed = await extractS3(textForHash)
+    console.log(hashed);
+    var total = await contract.methods.count().call();
     document.getElementById("text2").innerHTML = "Number of files stored in the blockchain = "+total;
-    var res = await contract.checkFile(hashed);
+    var res = await contract.methods.checkFile(hashed).call();
     if(res === false){
       document.getElementById("text3").innerHTML = "The file either does not exist in the blockchain or has been tampered with!";
     }
     else{
       document.getElementById("text4").innerHTML = "The file is authentic.";
-      var index = Number(await contract.getFileNo(hashed));
+      var index = Number(await contract.methods.getFileNo(hashed).call());
       document.getElementById("text5").innerHTML = "File No. : "+index;
-      var name =  await contract.getFileName(index);
+      var name =  await contract.methods.getFileName(index).call();
       document.getElementById("text6").innerHTML = "File Name : "+name;
-      var owner =  await contract.getOwner(index);
+      var owner =  await contract.methods.getOwner(index).call();
       document.getElementById("text7").innerHTML = "File Owner : "+owner;
     }
   }
-
   render() {
     if (!this.state.web3) {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
       <div className="App">
-        <h1>SmartBlocks Document Storage System</h1>
+        <h1>SmartBlocks Document Storage System</h1><br></br><br></br>
 
-        <button onClick={this.Bal}>View ETH balance</button>
-        <button /*onClick={this.Mint}*/>Store a doc in the blockchain</button>
-        <button onClick={this.Query}>Check integrity of local file</button>
+        <button onClick={this.Bal}>View ETH balance</button><br></br><br></br>
+        <button onClick={this.Hash}>Store a doc in the blockchain</button><br></br><br></br>
+        <button onClick={this.Query}>Check integrity of local file</button><br></br><br></br>
+        <input type='file' id='inputElement'></input>
 
         <div id='text-area'>
           <p id="text1"></p>
