@@ -72,9 +72,10 @@ class App extends Component {
   getFileText = function () {
     return new Promise((resolve, reject) => {
       const file = document.getElementById("inputElement").files[0];
+      console.log(file)
       if (file) {
         const reader = new FileReader();
-        reader.readAsText(file, "UTF-8");
+        reader.readAsBinaryString(file, "UTF-8");
         reader.onload = (evt) => {
           resolve(evt.target.result);
         };
@@ -89,10 +90,11 @@ class App extends Component {
     const filename = document.getElementById("inputElement").files[0].name;
     const { account, contract } = this.state;
     var contentForHash = await this.getFileText();
+    console.log(contentForHash);
     var hashed = await extractS3(contentForHash)
     console.log(hashed);
-    await contract.methods.uploadFile(hashed,filename).send({from: account});
-    document.getElementById('text-box').innerHTML = "Successfully uploaded file to blockchain!";
+    //await contract.methods.uploadFile(hashed,filename).send({from: account});
+    //document.getElementById('text-box').innerHTML = "Successfully uploaded file to blockchain!";
   }
 
   HashS3 = async () => {
@@ -122,6 +124,7 @@ class App extends Component {
     try{
       var result = await s3download(params);
       var hashed = await extractS3(result.Body);
+      console.log(hashed)
       var total = await contract.methods.count().call();
       var res = await contract.methods.checkFile(hashed).call();
       if(res === false){
