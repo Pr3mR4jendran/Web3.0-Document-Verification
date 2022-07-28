@@ -4,6 +4,7 @@ import "./App.css";
 import ContractHash from "./ContractHash.json";
 import AWS from 'aws-sdk'
 const { extractS3 } = require("./extractS3");
+const { extractfile } = require("./extractfile")
 require('dotenv').config()
 
 const s3 = new AWS.S3({
@@ -89,9 +90,10 @@ class App extends Component {
   Hash = async () => {
     const filename = document.getElementById("inputElement").files[0].name;
     const { account, contract } = this.state;
-    var contentForHash = await this.getFileText();
-    console.log(contentForHash);
-    var hashed = await extractS3(contentForHash)
+    //var contentForHash = await this.getFileText();
+    //console.log(contentForHash);
+    const file = document.getElementById("inputElement").files[0];
+    var hashed = await extractfile(file)
     console.log(hashed);
     //await contract.methods.uploadFile(hashed,filename).send({from: account});
     //document.getElementById('text-box').innerHTML = "Successfully uploaded file to blockchain!";
@@ -144,8 +146,9 @@ class App extends Component {
 
   Query = async () => {
     const { contract } = this.state;
-    var contentForHash = await this.getFileText();
-    var hashed = await extractS3(contentForHash);
+    //var contentForHash = await this.getFileText();
+    const file = document.getElementById("inputElement").files[0];
+    var hashed = await extractfile(file);
     console.log(hashed);
     var total = await contract.methods.count().call();
     var res = await contract.methods.checkFile(hashed).call();
