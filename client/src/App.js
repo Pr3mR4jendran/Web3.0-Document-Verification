@@ -169,123 +169,136 @@ class App extends Component {
     }
     return (
       <>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charSet="utf-8" />
-        <meta
-          name="keywords"
-          content="SmartBlocks: A trustworthy document verification tool"
-        />
-        <meta name="description" content="" />
-        <title>SmartBlocks</title>
-        <link rel="stylesheet" href="nicepage.css" media="screen" />
-        <link rel="stylesheet" href="Home.css" media="screen" />
-        <meta name="generator" content="SmartBlocks" />
-        <link
-          id="u-theme-google-font"
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
-        />
-        <link
-          id="u-page-google-font"
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
-        />
-        <meta name="theme-color" content="#232b79" />
-        <meta property="og:title" content="SmartBlocks" />
-        <meta property="og:type" content="website" />
-        <header className="u-clearfix u-header u-header" id="sec-a184" style={{minHeight: "75px"}}>
-          <a
-            href="https://www.integrauae.com"
-            className="u-image u-logo u-image-1"
-            data-image-width={100}
-            data-image-height={75}
-            style={{maxHeight:"10px"}}
-          >
-            <img src="images/image.png" className="u-logo-image u-logo-image-1" alt="Integra Logo" style={{paddingLeft:"60px"}} />
-          </a>
-        </header>
-        <section
-          className="u-align-center u-clearfix u-image u-shading u-section-1"
-          id="carousel_5ad0"
-          src=""
-          data-image-width={1782}
-          data-image-height={1080}
-        >
-          <br/>
-          <br/>
-          <h1 className="u-align-center u-custom-font u-font-montserrat u-text u-text-body-alt-color u-title u-text-1">
-            SmartBlocks Document Verification
-          </h1>
-          <br/>
-          <br/>
-          <div className="u-align-center u-expanded-width u-list u-list-1">
-            <div className="u-repeater u-repeater-1">
-              <div className="u-align-center u-container-style u-list-item u-repeater-item">
-                <div className="u-container-layout u-similar-container u-valign-middle u-container-layout-1">
-                  <button className="u-active-white u-border-2 u-border-white u-btn u-button-style u-custom-item u-hover-white u-none u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1" onClick={this.Bal}>
-                    View Eths Balance
-                  </button>
-                </div>
-              </div>
-              <div className="u-align-center u-container-style u-list-item u-repeater-item">
-                <div className="u-container-layout u-similar-container u-valign-middle u-container-layout-4">
-                  <button className="u-active-white u-border-2 u-border-white u-btn u-button-style u-custom-item u-hover-white u-none u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-4" onClick={this.List}>
-                    List stored files
-                  </button>
-                </div>
-              </div>
-              <div className="u-align-center u-container-style u-list-item u-repeater-item">
-                <div className="u-container-layout u-similar-container u-valign-middle u-container-layout-2">
-                  <button className="u-active-white u-border-2 u-border-white u-btn u-button-style u-custom-item u-hover-white u-none u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-2" onClick={this.Query}>
-                    Check File Integrity
-                  </button>
-                </div>
-              </div>
-              <div className="u-align-center u-container-style u-list-item u-repeater-item">
-                <div className="u-container-layout u-similar-container u-valign-middle u-container-layout-3">
-                  <button className="u-active-white u-border-2 u-border-white u-btn u-button-style u-custom-item u-hover-white u-none u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-3" onClick={this.Hash}>
-                    Store a document
-                  </button>
-                </div>
-              </div>
-              <div className="u-align-center u-container-style u-list-item u-repeater-item">
-                <div className="u-container-layout u-similar-container u-valign-middle u-container-layout-2">
-                  <button className="u-active-white u-border-2 u-border-white u-btn u-button-style u-custom-item u-hover-white u-none u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-2" onClick={this.QueryS3}>
-                    Check File Integrity(S3)
-                  </button>
-                </div>
-              </div>
-              <div className="u-align-center u-container-style u-list-item u-repeater-item">
-                <div className="u-container-layout u-similar-container u-valign-middle u-container-layout-3">
-                  <button className="u-active-white u-border-2 u-border-white u-btn u-button-style u-custom-item u-hover-white u-none u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-3" onClick={this.HashS3}>
-                    Store a document(S3)
-                  </button>
-                </div>
-              </div>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charSet="utf-8" />
+  <meta name="keywords" content="SmartBlocks Document Verification System" />
+  <meta name="description" content="" />
+  <title>Home</title>
+  <link rel="stylesheet" href="nicepage.css" media="screen" />
+  <link rel="stylesheet" href="Home.css" media="screen" />
+  <meta name="generator" content="Nicepage 4.13.4, nicepage.com" />
+  <link
+    id="u-theme-google-font"
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
+  />
+  <link
+    id="u-page-google-font"
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Titillium+Web:200,200i,300,300i,400,400i,600,600i,700,700i,900"
+  />
+  <meta name="theme-color" content="#478ac9" />
+  <meta property="og:title" content="Home" />
+  <meta property="og:type" content="website" />
+  <header className="u-clearfix u-header u-header" id="sec-8763">
+    <div className="u-clearfix u-sheet u-sheet-1">
+      <a
+        href="https://www.integrauae.com"
+        className="u-align-left u-image u-logo u-image-1"
+        title="Integra"
+        data-image-width={349}
+        data-image-height={76}
+      >
+        <img src="images/image.png" className="u-logo-image u-logo-image-1" alt="Integra Logo" style={{paddingLeft:"50px"}} />
+      </a>
+    </div>
+  </header>
+  <section
+    className="u-align-center u-black u-clearfix u-section-1"
+    id="carousel_e398"
+  >
+    <div className="u-clearfix u-sheet u-sheet-1">
+      <h2 className="u-custom-font u-font-titillium-web u-text u-text-1">
+        SmartBlocks Document Verification System
+      </h2>
+      <div className="u-align-center u-list u-list-1">
+        <div className="u-repeater u-repeater-1">
+          <div className="u-container-style u-list-item u-repeater-item">
+            <div className="u-container-layout u-similar-container u-container-layout-1">
+              <button
+                className="u-btn u-button-style u-custom-font u-custom-item u-font-titillium-web u-palette-2-base u-btn-1"
+                onClick={this.Bal}
+              >
+                View ETH BALANCE
+              </button>
             </div>
           </div>
-          <br></br><br></br><br></br>
-          <div>
-            <input className="u-align-center" type='file' id='inputElement'></input>
+          <div className="u-container-style u-list-item u-repeater-item">
+            <div className="u-container-layout u-similar-container u-container-layout-2">
+              <button
+                className="u-btn u-button-style u-custom-font u-custom-item u-font-titillium-web u-palette-2-base u-btn-2"
+                onClick={this.List}
+              >
+                LIST STORED FILES
+              </button>
+            </div>
           </div>
-          <br></br><br></br><br></br>
-          <div>
-            <input className="u-align-center" style={{color:"black"}} id='S3input'></input>
+          <div className="u-container-style u-list-item u-repeater-item">
+            <div className="u-container-layout u-similar-container u-container-layout-3">
+              <button
+                className="u-btn u-button-style u-custom-font u-custom-item u-font-titillium-web u-palette-2-base u-btn-3"
+                onClick={this.Query}
+              >
+                Check local file Integrity
+              </button>
+            </div>
           </div>
-          <br></br><br></br><br></br>
-          <div>
-            <p
-              className="u-custom-item u-text u-text-default u-text-2"
-              id="text-box"
-            />
+          <div className="u-container-style u-list-item u-repeater-item">
+            <div className="u-container-layout u-similar-container u-container-layout-4">
+              <button
+                className="u-btn u-button-style u-custom-font u-custom-item u-font-titillium-web u-palette-2-base u-btn-4"
+                onClick={this.QueryS3}
+              >
+                CHECK S3 FILE INTEGRITY
+              </button>
+            </div>
           </div>
-          <br></br><br></br><br></br>
-          <p className="u-small-text u-text u-text-variant u-text-1" style={{fontSize:"20px"}}>
-            © 2022 Integra Technologies FZE
-          </p>
-          <br/>
-        </section>
-      </>
+          <div className="u-container-style u-list-item u-repeater-item">
+            <div className="u-container-layout u-similar-container u-container-layout-5">
+              <button
+                className="u-btn u-button-style u-custom-font u-custom-item u-font-titillium-web u-palette-2-base u-btn-5"
+                onClick={this.Hash}
+              >
+                STORE A LOCAL FILE
+              </button>
+            </div>
+          </div>
+          <div className="u-container-style u-list-item u-repeater-item">
+            <div className="u-container-layout u-similar-container u-container-layout-6">
+              <button
+                className="u-btn u-button-style u-custom-font u-custom-item u-font-titillium-web u-palette-2-base u-btn-6"
+                onClick={this.HashS3}
+              >
+                STORE AN S3 FILE
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br></br><br></br><br></br>
+      <div>
+        <input className="u-align-center" type='file' id='inputElement'></input>
+      </div>
+      <br></br><br></br><br></br>
+      <div>
+        <input className="u-align-center" style={{color:"black"}} id='S3input'></input>
+      </div>
+      <br></br><br></br><br></br>
+      <div>
+        <p
+          className="u-custom-item u-text u-text-default u-text-2"
+          id="text-box"
+        />
+      </div>
+      <br></br><br></br><br></br>
+    </div>
+    <p className="u-custom-font u-font-titillium-web u-small-text u-text u-text-variant u-text-1" style={{fontSize:"20px"}}>
+      © 2022 Integra Technologies FZE
+    </p>
+    <br></br><br></br><br></br>
+  </section>
+</>
+
     );
   }
 }
