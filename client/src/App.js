@@ -3,6 +3,7 @@ import getWeb3 from "./getWeb3";
 import "./App.css";
 import ContractHash from "./ContractHash.json";
 import AWS from 'aws-sdk'
+import swal from 'sweetalert';
 const { extractS3 } = require("./extractS3");
 require('dotenv').config()
 
@@ -66,24 +67,7 @@ class App extends Component {
 
   Bal = async () => {
     const { balance } = this.state;
-    document.getElementById("text-box").innerHTML = balance + " ETH"
-  }
-
-  getFileBuffer = async () => {
-    return new Promise((resolve, reject) => {
-      const file = document.getElementById("inputElement").files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.readAsArrayBuffer(file);
-        reader.onload = (evt) => {
-          console.log(evt.target);
-          resolve(evt.target.result)
-        };
-        reader.onerror = (evt) => {
-          console.log("error reading file");
-        };
-      }
-    })
+    swal(balance + " ETH")
   }
 
   Hash = async () => {
@@ -95,7 +79,7 @@ class App extends Component {
     var hashed = await extractS3(view);
     console.log(hashed);
     await contract.methods.uploadFile(hashed,filename).send({from: account});
-    document.getElementById('text-box').innerHTML = "Successfully uploaded file to blockchain!";
+    swal("Successfully uploaded file to blockchain!")
   }
 
   HashS3 = async () => {
@@ -109,7 +93,7 @@ class App extends Component {
       var hashed = await extractS3(result.Body);
       console.log(hashed);
       await contract.methods.uploadFile(hashed,params.Key).send({from: account});
-      document.getElementById('text-box').innerHTML = "Successfully uploaded file to blockchain!";
+      swal("Successfully uploaded file to blockchain!")
     }
     catch(e){
       console.error(e);
@@ -130,17 +114,17 @@ class App extends Component {
       var total = await contract.methods.count().call();
       var res = await contract.methods.checkFile(hashed).call();
       if(res === false){
-        document.getElementById("text-box").innerHTML = "Number of files stored in the blockchain = " + total + "<br></br>The file either does not exist in the blockchain or has been tampered with!";
+        swal("Number of files stored in the blockchain = " + total + "\nThe file either does not exist in the blockchain or has been tampered with!")
       }
       else{
         var index = Number(await contract.methods.getFileNo(hashed).call());
         var name =  await contract.methods.getFileName(index).call();
         var owner =  await contract.methods.getOwner(index).call();
-        document.getElementById("text-box").innerHTML = "The file is authentic.<br></br>File No. : " + index + "<br></br>File Name : " + name + "<br></br>File Owner : " +owner;
+        swal("The file is authentic.\nFile No. : " + index + "\nFile Name : " + name + "\nFile Owner : " +owner)
       }
     }
     catch(err){
-      console.error(err);
+      swal(err);
     }
   }
 
@@ -154,13 +138,14 @@ class App extends Component {
     var total = await contract.methods.count().call();
     var res = await contract.methods.checkFile(hashed).call();
     if(res === false){
-      document.getElementById("text-box").innerHTML = "Number of files stored in the blockchain = " + total + "<br></br>The file either does not exist in the blockchain or has been tampered with!";
+      swal("Number of files stored in the blockchain = " + total + "\nThe file either does not exist in the blockchain or has been tampered with!");
     }
     else{
       var index = Number(await contract.methods.getFileNo(hashed).call());
       var name =  await contract.methods.getFileName(index).call();
       var owner =  await contract.methods.getOwner(index).call();
-      document.getElementById("text-box").innerHTML = "The file is authentic.<br></br>File No. : " + index + "<br></br>File Name : " + name + "<br></br>File Owner : " +owner;
+      //document.getElementById("text-box").innerHTML = "The file is authentic.<br></br>File No. : " + index + "<br></br>File Name : " + name + "<br></br>File Owner : " +owner;
+      swal("The file is authentic.\nFile No. : " + index + "\nFile Name : " + name + "\nFile Owner : " +owner)
     }
   }
 
@@ -173,9 +158,9 @@ class App extends Component {
     }
     let finalstring = ""
     for(let i=1;i<=total;i++){
-      finalstring += (temp[i] +"<br></br>")
+      finalstring += (temp[i] +"\n")
     }
-    document.getElementById("text-box").innerHTML = finalstring;
+    swal(finalstring);
   }
 
   render() {
