@@ -193,14 +193,15 @@ class App extends Component {
         <meta name="theme-color" content="#232b79" />
         <meta property="og:title" content="SmartBlocks" />
         <meta property="og:type" content="website" />
-        <header className="u-clearfix u-header u-header" id="sec-a184">
+        <header className="u-clearfix u-header u-header" id="sec-a184" style={{minHeight: "75px"}}>
           <a
             href="https://www.integrauae.com"
             className="u-image u-logo u-image-1"
-            data-image-width={466}
-            data-image-height={194}
+            data-image-width={100}
+            data-image-height={75}
+            style={{maxHeight:"10px"}}
           >
-            <img src="images/image.png" className="u-logo-image u-logo-image-1" alt="Integra Logo" />
+            <img src="images/image.png" className="u-logo-image u-logo-image-1" alt="Integra Logo" style={{paddingLeft:"60px"}} />
           </a>
         </header>
         <section
@@ -210,9 +211,13 @@ class App extends Component {
           data-image-width={1782}
           data-image-height={1080}
         >
+          <br/>
+          <br/>
           <h1 className="u-align-center u-custom-font u-font-montserrat u-text u-text-body-alt-color u-title u-text-1">
             SmartBlocks Document Verification
           </h1>
+          <br/>
+          <br/>
           <div className="u-align-center u-expanded-width u-list u-list-1">
             <div className="u-repeater u-repeater-1">
               <div className="u-align-center u-container-style u-list-item u-repeater-item">
@@ -259,10 +264,11 @@ class App extends Component {
               </div>
             </div>
           </div>
+          <br></br><br></br><br></br>
           <div>
             <input className="u-align-center" type='file' id='inputElement'></input>
           </div>
-          <br></br><br></br>
+          <br></br><br></br><br></br>
           <div>
             <input className="u-align-center" style={{color:"black"}} id='S3input'></input>
           </div>
@@ -273,17 +279,12 @@ class App extends Component {
               id="text-box"
             />
           </div>
+          <br></br><br></br><br></br>
+          <p className="u-small-text u-text u-text-variant u-text-1" style={{fontSize:"20px"}}>
+            © 2022 Integra Technologies FZE
+          </p>
+          <br/>
         </section>
-        <footer
-          className="u-align-center u-clearfix u-footer u-grey-80 u-footer"
-          id="sec-b796"
-        >
-          <div className="u-clearfix u-sheet u-sheet-1">
-            <p className="u-small-text u-text u-text-variant u-text-1" style={{fontSize:"20px"}}>
-              © 2022 Integra Technologies FZE
-            </p>
-          </div>
-        </footer>
       </>
     );
   }
