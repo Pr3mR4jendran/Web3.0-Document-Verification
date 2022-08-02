@@ -1,7 +1,7 @@
 var AWS = require("aws-sdk");
 const { extractS3 } = require("./extractS3");
 const { extractfile } = require("./extractfile");
-const file = "6103.png";
+const file = "hugefile.txt";
 const filename = "../docs/"+file;
 const path = require("path");
 
