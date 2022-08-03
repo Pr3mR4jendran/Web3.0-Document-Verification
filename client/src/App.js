@@ -5,17 +5,14 @@ import ContractHash from "./ContractHash.json";
 import AWS from 'aws-sdk'
 import swal from 'sweetalert';
 import Spinner from 'react-spinner-material';
-const{ fromInstanceMetadata } = require("@aws-sdk/credential-providers");
 const { extractS3 } = require("./extractS3");
 require('dotenv')
 
 AWS.config.update({region: 'us-east-2'});
 
 const s3 = new AWS.S3({
-  credentials: fromInstanceMetadata,
-  //accessKeyId: process.env.REACT_APP_IAM_USER_KEY,
-  //secretAccessKey: process.env.REACT_APP_IAM_USER_SECRET,
-  //Bucket: "smartblocks-docs"
+  accessKeyId: process.env.REACT_APP_IAM_USER_KEY,
+  secretAccessKey: process.env.REACT_APP_IAM_USER_SECRET,
 });
 
 const s3download = function (params) {
