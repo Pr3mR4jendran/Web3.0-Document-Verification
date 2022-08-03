@@ -3,9 +3,9 @@ import getWeb3 from "./getWeb3";
 import "./App.css";
 import ContractHash from "./ContractHash.json";
 import AWS from 'aws-sdk'
-const { fromInstanceMetadata } = require("@aws-sdk/credential-providers");
 import swal from 'sweetalert';
 import Spinner from 'react-spinner-material';
+const { fromInstanceMetadata } = require("@aws-sdk/credential-providers");
 const { extractS3 } = require("./extractS3");
 require('dotenv').config()
 
