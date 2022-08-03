@@ -3,15 +3,21 @@ import getWeb3 from "./getWeb3";
 import "./App.css";
 import ContractHash from "./ContractHash.json";
 import AWS from 'aws-sdk'
+import { fromInstanceMetadata } from "@aws-sdk/credential-providers";
 import swal from 'sweetalert';
 import Spinner from 'react-spinner-material';
 const { extractS3 } = require("./extractS3");
 require('dotenv').config()
 
-AWS.config.region = 'us-east-2'
-AWS.config.credentials = new AWS.EC2MetadataCredentials;
-
 const s3 = new AWS.S3({
+  credentials: fromInstanceMetadata({
+    // Optional. The connection timeout (in milliseconds) to apply to any remote requests.
+    // If not specified, a default value of `1000` (one second) is used.
+    timeout: 1000,
+    // Optional. The maximum number of times any HTTP connections should be retried. If not
+    // specified, a default value of `0` will be used.
+    maxRetries: 0,
+  }),
   //accessKeyId: process.env.REACT_APP_IAM_USER_KEY,
   //secretAccessKey: process.env.REACT_APP_IAM_USER_SECRET,
   //Bucket: "smartblocks-docs"
