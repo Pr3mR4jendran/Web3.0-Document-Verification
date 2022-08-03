@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aws-sdk/credential-providers": "^3.142.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "aws-sdk": "^2.1187.0",
     "dotenv": "^16.0.1",
     "hasha": "^5.2.2",
     "react": "^18.1.0",
