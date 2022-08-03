@@ -8,6 +8,8 @@ import Spinner from 'react-spinner-material';
 const { extractS3 } = require("./extractS3");
 require('dotenv').config()
 
+AWS.config.credentials = new AWS.EC2MetadataCredentials();
+
 const s3 = new AWS.S3({
   //accessKeyId: process.env.REACT_APP_IAM_USER_KEY,
   //secretAccessKey: process.env.REACT_APP_IAM_USER_SECRET,
