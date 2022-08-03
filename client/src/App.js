@@ -9,12 +9,7 @@ const { extractS3 } = require("./extractS3");
 require('dotenv').config()
 
 AWS.config.region = 'us-east-2'
-AWS.config.credentials = new AWS.EC2MetadataCredentials({
-  httpOptions: { timeout: 5000 }, // 5 second timeout
-  maxRetries: 10, // retry 10 times
-  retryDelayOptions: { base: 200 }, // see AWS.Config for information
-  logger: console // see AWS.Config for information
-});
+AWS.config.credentials = new AWS.EC2MetadataCredentials;
 
 const s3 = new AWS.S3({
   //accessKeyId: process.env.REACT_APP_IAM_USER_KEY,
