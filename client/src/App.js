@@ -15,18 +15,14 @@ const s3 = new AWS.S3({
 
 const s3download = function (params) {
   return new Promise((resolve, reject) => {
-      s3.createBucket({
-          Bucket: "smartblocks-docs"
-      }, function () {
-          s3.getObject(params, function (err, data) {
-              if (err) {
-                  reject(err);
-              } else {
-                  console.log("Successfully dowloaded data from bucket");
-                  resolve(data);
-              }
-          });
-      });
+    s3.getObject(params, function (err, data) {
+      if (err) {
+          reject(err);
+      } else {
+        console.log("Successfully dowloaded data from bucket");
+        resolve(data);
+      }
+    });
   });
 }
 
