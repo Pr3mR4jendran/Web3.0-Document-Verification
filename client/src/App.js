@@ -4,6 +4,7 @@ import "./App.css";
 import ContractHash from "./ContractHash.json";
 import AWS from 'aws-sdk'
 import swal from 'sweetalert';
+import Spinner from 'react-spinner-material';
 const { extractS3 } = require("./extractS3");
 require('dotenv').config()
 
@@ -27,7 +28,7 @@ const s3download = function (params) {
 }
 
 class App extends Component {
-  state = { storageValue: 0, web3: null, accounts: null, contract: null, account: null, balance: null};
+  state = { storageValue: 0, web3: null, accounts: null, contract: null, account: null, balance: null, spinnervisible: false};
 
   componentDidMount = async () => {
     try {
@@ -69,6 +70,7 @@ class App extends Component {
   Hash = async () => {
     const { account, contract } = this.state;
     const filename = document.getElementById("inputElement").files[0].name;
+    this.setState({spinnervisible:true})
     var bufferHash = await document.getElementById("inputElement").files[0].arrayBuffer();
     const view = new Uint8Array(bufferHash);
     console.log(view)
@@ -76,6 +78,7 @@ class App extends Component {
     console.log(hashed);
     await contract.methods.uploadFile(hashed,filename).send({from: account});
     swal("Successfully uploaded file to blockchain!")
+    this.setState({spinnervisible:false})
   }
 
   HashS3 = async () => {
@@ -85,11 +88,13 @@ class App extends Component {
       Key: document.getElementById("S3input").value
     };
     try{
+      this.setState({spinnervisible:true})
       var result = await s3download(params);
       var hashed = await extractS3(result.Body);
       console.log(hashed);
       await contract.methods.uploadFile(hashed,params.Key).send({from: account});
       swal("Successfully uploaded file to blockchain!")
+      this.setState({spinnervisible:false})
     }
     catch(e){
       console.error(e);
@@ -103,6 +108,7 @@ class App extends Component {
       Key: document.getElementById("S3input").value
     };
     try{
+      this.setState({spinnervisible:true})
       var result = await s3download(params);
       console.log(result.Body)
       var hashed = await extractS3(result.Body);
@@ -117,7 +123,9 @@ class App extends Component {
         var name =  await contract.methods.getFileName(index).call();
         var owner =  await contract.methods.getOwner(index).call();
         swal("The file is authentic.\nFile No. : " + index + "\nFile Name : " + name + "\nFile Owner : " +owner)
+        
       }
+      this.setState({spinnervisible:false})
     }
     catch(err){
       swal(err);
@@ -126,6 +134,7 @@ class App extends Component {
 
   Query = async () => {
     const { contract } = this.state;
+    this.setState({spinnervisible:true})
     var bufferHash = await document.getElementById("inputElement").files[0].arrayBuffer();
     const view = new Uint8Array(bufferHash);
     console.log(view)
@@ -143,6 +152,7 @@ class App extends Component {
       //document.getElementById("text-box").innerHTML = "The file is authentic.<br></br>File No. : " + index + "<br></br>File Name : " + name + "<br></br>File Owner : " +owner;
       swal("The file is authentic.\nFile No. : " + index + "\nFile Name : " + name + "\nFile Owner : " +owner)
     }
+    this.setState({spinnervisible:false})
   }
 
   List = async () => {
@@ -271,6 +281,8 @@ class App extends Component {
                 </div>
               </div>
             </div>
+            <center><Spinner id="spinner" radius={50} color={"#FF0000"} stroke={2} visible={this.state.spinnervisible} /></center>
+            <br/><br/><br/>
             <div>
               <input className="u-align-center" type='file' id='inputElement'></input>
             </div>
