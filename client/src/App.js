@@ -8,6 +8,7 @@ import Spinner from 'react-spinner-material';
 const { extractS3 } = require("./extractS3");
 require('dotenv').config()
 
+AWS.config.region = 'us-east-2'
 AWS.config.credentials = new AWS.EC2MetadataCredentials({
   httpOptions: { timeout: 5000 }, // 5 second timeout
   maxRetries: 10, // retry 10 times
