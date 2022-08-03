@@ -12,7 +12,7 @@ require('dotenv')
 AWS.config.update({region: 'us-east-2'});
 
 const s3 = new AWS.S3({
-  credentials: fromInstanceMetadata(),
+  credentials: fromInstanceMetadata,
   //accessKeyId: process.env.REACT_APP_IAM_USER_KEY,
   //secretAccessKey: process.env.REACT_APP_IAM_USER_SECRET,
   //Bucket: "smartblocks-docs"
