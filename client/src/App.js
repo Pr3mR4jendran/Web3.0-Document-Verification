@@ -129,7 +129,7 @@ class App extends Component {
       this.setState({spinnervisible:false})
     }
     catch(err){
-      swal(err);
+      console.error(err);
     }
   }
 
