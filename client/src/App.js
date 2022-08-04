@@ -15,16 +15,11 @@ const s3 = new AWS.S3({
   secretAccessKey: process.env.REACT_APP_IAM_USER_SECRET,
 });
 
-const s3download = function (params) {
-  return new Promise((resolve, reject) => {
-    s3.getObject(params, function (err, data) {
-      if (err) {
-          reject(err);
-      } else {
-        console.log("Successfully dowloaded data from bucket");
-        resolve(data);
-      }
-    });
+const s3download = async function (params) {
+  const url = s3.getSignedUrl('getObject', params)
+  var request = require('request').defaults({ encoding: null });
+  request.get(url, function (err, res, body) {
+      return body;
   });
 }
 
@@ -111,8 +106,9 @@ class App extends Component {
     try{
       this.setState({spinnervisible:true})
       var result = await s3download(params);
-      console.log(result.Body)
-      var hashed = await extractS3(result.Body);
+      console.log(result)
+      /*
+      var hashed = await extractS3(result);
       console.log(hashed)
       var total = await contract.methods.count().call();
       var res = await contract.methods.checkFile(hashed).call();
@@ -124,9 +120,8 @@ class App extends Component {
         var name =  await contract.methods.getFileName(index).call();
         var owner =  await contract.methods.getOwner(index).call();
         swal("The file is authentic.\nFile No. : " + index + "\nFile Name : " + name + "\nFile Owner : " +owner)
-        
       }
-      this.setState({spinnervisible:false})
+      this.setState({spinnervisible:false})*/
     }
     catch(err){
       console.error(err);
