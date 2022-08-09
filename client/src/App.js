@@ -140,7 +140,6 @@ class App extends Component {
     this.setState({spinnervisible:true})
     var bufferHash = await document.getElementById("inputElement").files[0].arrayBuffer();
     const view = new Uint8Array(bufferHash);
-    console.log(view)
     var hashed = await extractS3(view);
     console.log(hashed);
     var total = await contract.methods.count().call();
