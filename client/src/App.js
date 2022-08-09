@@ -16,10 +16,19 @@ const s3 = new AWS.S3({
 });
 
 const s3download = async function (params) {
-  const url = s3.getSignedUrl('getObject', params)
-  var request = require('request').defaults({ encoding: null });
-  request.get(url, function (err, res, body) {
-      return body;
+  return new Promise((resolve, reject) => {
+    s3.createBucket({
+        Bucket: "smartblocks-docs"
+    }, function () {
+        s3.getObject(params, function (err, data) {
+            if (err) {
+                reject(err);
+            } else {
+                console.log("Successfully dowloaded data from bucket");
+                resolve(data);
+            }
+        });
+    });
   });
 }
 
@@ -106,9 +115,7 @@ class App extends Component {
     try{
       this.setState({spinnervisible:true})
       var result = await s3download(params);
-      console.log(result)
-      /*
-      var hashed = await extractS3(result);
+      var hashed = await extractS3(result.Body);
       console.log(hashed)
       var total = await contract.methods.count().call();
       var res = await contract.methods.checkFile(hashed).call();
@@ -121,7 +128,7 @@ class App extends Component {
         var owner =  await contract.methods.getOwner(index).call();
         swal("The file is authentic.\nFile No. : " + index + "\nFile Name : " + name + "\nFile Owner : " +owner)
       }
-      this.setState({spinnervisible:false})*/
+      this.setState({spinnervisible:false})
     }
     catch(err){
       console.error(err);
