@@ -179,9 +179,9 @@ class App extends Component {
       <>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charSet="utf-8" />
-        <meta name="keywords" content="SmartBlocks Document Verification System"/>
+        <meta name="keywords" content="OSC Document Verification System"/>
         <meta name="description" content=""/>
-        <title>Home</title>
+        <title>Web 3.0 Demo</title>
         <link rel="stylesheet" href="nicepage.css" media="screen"/>
         <link rel="stylesheet" href="Home.css" media="screen"/>
         <meta name="generator" content="Nicepage 4.13.4, nicepage.com"/>
@@ -199,15 +199,14 @@ class App extends Component {
         <meta property="og:title" content="Home"/>
         <meta property="og:type" content="website"/>
         <header className="u-clearfix u-header u-header" id="sec-8763">
-          <div className="u-clearfix u-sheet u-sheet-1">
+          <div className="u-clearfix u-sheet u-sheet-1" style={{backgroundColor:"black"}}>
             <a
-              href="https://www.integrauae.com"
               className="u-align-left u-image u-logo u-image-1"
-              title="Integra"
+              title="Open Source Club"
               data-image-width={349}
               data-image-height={76}
             >
-              <img src="images/image.png" className="u-logo-image u-logo-image-1" alt="Integra Logo" style={{paddingLeft:"50px"}}/>
+              <img src="images/OSCLogo.jpg" className="u-logo-image u-logo-image-1" alt="OSC Logo" style={{paddingLeft:"50px"}}/>
             </a>
           </div>
         </header>
@@ -217,7 +216,7 @@ class App extends Component {
         >
           <div className="u-clearfix u-sheet u-sheet-1">
             <h2 className="u-custom-font u-font-titillium-web u-text u-text-1">
-              SmartBlocks Document Verification System
+              Web 3.0 Document Verification System
             </h2>
             <div className="u-align-center u-list u-list-1">
               <div className="u-repeater u-repeater-1">
@@ -302,7 +301,7 @@ class App extends Component {
             <br/><br/><br/>
           </div>
           <p className="u-custom-font u-font-titillium-web u-small-text u-text u-text-variant u-text-1" style={{fontSize:"20px"}}>
-            © 2022 Integra Technologies FZE
+            © 2022 Open Source Club AUS
           </p>
           <br/><br/><br/>
         </section>
